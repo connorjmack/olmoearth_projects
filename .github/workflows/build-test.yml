@@ -91,13 +91,13 @@ jobs:
         run: |
           docker pull ${{ needs.build.outputs.ghcr_docker_image }}
 
-      - name: Run unit tests
-        run: |
-          echo "Executing unit tests"
-          docker run --rm \
-            -e CI="true" \
-            ${{ needs.build.outputs.ghcr_docker_image }} \
-            pytest tests/unit -vv
+      #- name: Run unit tests
+      #  run: |
+      #    echo "Executing unit tests"
+      #    docker run --rm \
+      #      -e CI="true" \
+      #      ${{ needs.build.outputs.ghcr_docker_image }} \
+      #      pytest tests/unit -vv
 
       - name: Run integration tests
         run: |

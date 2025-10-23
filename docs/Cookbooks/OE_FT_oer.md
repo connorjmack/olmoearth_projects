@@ -45,7 +45,7 @@ Here we are creating the windows at the given sampled locations:
 ``` shell
 python ./rslearn_projects/rslp/burn-scar/create_windows_for_groundtruth.py --csv_path=/weka/dfive-default/hadriens/datasets/label_data/Calfp_2020-2025_GroundTruthPoints.csv --ds_path=/weka/dfive-default/rslearn-eai/datasets/burn-scar/California/2020-25 --window_size=32
 ```
-This effectively stores windows in the ds_path folder. We used a window_size of 32 and a window projection of 10 m/pixel (x) and −10 m/pixel (y), so a 32-pixel window is ~320 m × 320 m on the ground. 
+This effectively stores windows in the ds_path folder. We used a window_size of 32 and a window projection of 10 m/pixel (x) and −10 m/pixel (y), so a 32-pixel window is ~320 m × 320 m on the ground.
 
 
 > ---
@@ -71,7 +71,7 @@ In our case, so far we have created our windows and our label layer in a vector 
     "label": {
         "type": "vector",
         "format": {
-            "name": "geojson", 
+            "name": "geojson",
             "coordinate_mode": "pixel"
         }
     },
@@ -154,7 +154,7 @@ rslearn dataset materialize --root $DATASET_PATH --group $DATASET_GROUP --worker
 ```
 We now have additional layer in our dataset windows, named "sentinel2" in accordance with our dataset config.json file. For each window, our band sets (B01-B12 and RGB) have been stiched into two respective geotiffs (one for each band set) that covers the extent of the window at the appropriate resolution.
 
-We now have a dataset consisting of vector ground truth data and raster sentinel 2 covariate data. 
+We now have a dataset consisting of vector ground truth data and raster sentinel 2 covariate data.
 We are ready to finetune OlmoEarth.
 
 ## 3. Defining and training the model
@@ -169,7 +169,7 @@ First let's download the OlmoEarth pretrained model weights. Depending on the co
 Now we need to design our model architecture, training loop and evaluation metrics, and define how the data should be pre-processed and sent to the model.
 Behind the scenes, we use Lightning to coordinate and run the fine-tuning job. This allows us to configure every aspect of the job in a single configuration file.
 
-Let's create it: 
+Let's create it:
 `burn_scar_model.yaml`:
 
 ```yaml

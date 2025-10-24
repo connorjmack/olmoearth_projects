@@ -34,10 +34,18 @@ source .venv/bin/activate
 
 ## Developing New Models
 
-Here are tutorials for developing models using all of the components of OlmoEarth: the
-[OlmoEarth model](https://github.com/allenai/olmoearth_pretrain/),
-[rslearn](https://github.com/alleani/rslearn/), and
-[olmoearth_run](https://github.com/allenai/olmoearth_run/).
+The components of OlmoEarth include:
+
+- [olmoearth_pretrain](https://github.com/allenai/olmoearth_pretrain/), the OlmoEarth
+  pre-trained model.
+- [rslearn](https://github.com/alleani/rslearn/), our tool for obtaining satellite
+  images and other geospatial data from online data sources, and for fine-tuning
+  remote sensing foundation models.
+- [olmoearth_run](https://github.com/allenai/olmoearth_run/), our higher-level
+  infrastructure that automates various steps on top of rslearn such as window creation
+  and inference post-processing.
+
+Here are tutorials that use all of the OlmoEarth components:
 
 - [Fine-tuning OlmoEarth for Classification](docs/tutorials/FinetuneOlmoEarthClassification.md)
 

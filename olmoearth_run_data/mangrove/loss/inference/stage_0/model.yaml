@@ -7,7 +7,7 @@ model:
       class_path: rslearn.models.multitask.MultiTaskModel
       init_args:
         encoder:
-        - class_path: rslp.helios.model.Helios
+        - class_path: rslearn.models.olmoearth_pretrain.model.OlmoEarth
           init_args:
             checkpoint_path: ${EXTRA_FILES_PATH}/step300000
             selector:
@@ -18,7 +18,7 @@ model:
             autocast_dtype: bfloat16
         decoders:
           mangrove_classification:
-          - class_path: rslp.crop.kenya_nandi.train.SegmentationPoolingDecoder
+          - class_path: rslearn.models.pooling_decoder.SegmentationPoolingDecoder
             init_args:
               in_channels: 768
               out_channels: 4
@@ -271,7 +271,7 @@ data:
             - target/mangrove_classification/classes
             - target/mangrove_classification/valid
             box_selectors: []
-        - class_path: rslp.helios.norm.HeliosNormalize
+        - class_path: rslearn.models.olmoearth_pretrain.norm.OlmoEarthNormalize
           init_args:
             band_names:
               sentinel2_l2a:
@@ -353,7 +353,7 @@ data:
             sentinel2_l2a: []
           output_selector: sentinel2_l2a
       # I feel like we really don;t want this
-      - class_path: rslp.helios.norm.HeliosNormalize
+      - class_path: rslearn.models.olmoearth_pretrain.norm.OlmoEarthNormalize
         init_args:
           band_names:
             sentinel2_l2a:
@@ -450,8 +450,6 @@ trainer:
   reload_dataloaders_every_n_epochs: 0
   default_root_dir: null
   model_registry: null
-# rslp_project: ${WANDB_PROJECT}
-# rslp_experiment: ${WANDB_NAME}
 # ${EXTRA_FILES_PATH}: Path to the extra pretrained model/data preprocessing config files
 # ${TRAINER_DATA_PATH}: Path to the rslearn trainer data directory. For intermediate checkpoints, trainer state, etc.
 # ${WANDB_ENTITY}: wandb entity for the trainer to log metrics to

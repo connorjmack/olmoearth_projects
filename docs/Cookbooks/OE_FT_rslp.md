@@ -293,7 +293,7 @@ rslp_experiment: placeholder
 Now we can train the model:
 
 ```shell
-python -m rslp.main olmoearth_pretrain launch_finetune --image_name yawenzzzz/rslpomp --config_paths+=data/helios/v2_burn_scar_classification/finetune_s2_single_ts.yaml --cluster+=ai2/saturn-cirrascale --rslp_project 2025_10_20_burn-scar-ca --experiment_id burn-scar-ca_classif_helios_base_S2_1ts_ws4_ps4_bs32
+python -m rslp.main olmoearth_pretrain launch_finetune --image_name yawenzzzz/rslpomp --config_paths+=data/helios/v2_burn_scar_classification/finetune_s2_single_ts.yaml --cluster+=ai2/jupiter-cirrascale-2 --rslp_project 2025_10_20_burn-scar-ca --priority high --experiment_id burn-scar-ca_classif_helios_base_S2_1ts_ws8_ps4_bs32
 ```
 
 ## 4. Comparing different set-up (multimodal, tasks)

@@ -14,22 +14,25 @@ The model inputs twelve timesteps of satellite image data with one
 mosaic [Sentinel-2 L2A](https://planetarycomputer.microsoft.com/dataset/sentinel-2-l2a)
 mosaic per 30-day period.
 
-At every 2 by 2 patch it outputs a classifcication of mangrove, water or other
+At every 2 by 2 patch it outputs a classification of mangrove, water or other.
+
+The model achieves strong performance on the validation set with an overall accuracy of 97.6%.
+Mangrove classification achieves the hF1 score of 98.7% (precision: 98.5%, recall: 99.0%),
+followed by Water with an F1 score of 97.1% (precision: 96.5%, recall: 97.7%),
+and Other with an F1 score of 96.3% (precision: 97.1%, recall: 95.4%).
+
 
 ## Training Data
 
-The model is trained on the
--what is the datast
-- what is a sample composed of
-- what is the rslearn window composed of
-- how did we split the data
+The model is trained on data provided by Global Mangrove Watch.
 
-We split the dataset into train, val, and test splits spatially, where 128x128 pixel
+
+Each sample in the dataset specifies a longitude, latitude, a start and end time (1 year apart), and a class label. For each sample we create a 12 month time series of Sentinel 2 data within the time bounds.
+
+We split the dataset into train, val, and test splits spatially, where 32x32 pixel
 grid cells are assigned via hash to train (70%), val (20%), or test (10%).
 
 ## Inference
 
 Inference is documented in [the main README](../README.md). The prediction request
-geometry should have start timestamp equal to the timestamp for which you want to make
-the LFMC prediction (e.g., the current timestamp). The end timestamp won't be used and
-can be set arbitrarily, e.g. set equal to the start timestamp.
+geometry should have start timestamp set 12 months prior to the date in which you would like to classify mangrove extent

@@ -315,9 +315,9 @@ Now we can train the model:
 
 ### 3.  Finetune model
 ```shell
-export GROUP_PATH=/weka/dfive-default/rslearn-eai/datasets/burn-scar/oerun/dataset/windows/post_random_split
+export GROUP_PATH=/weka/dfive-default/rslearn-eai/datasets/burn-scar/oerun_raster/dataset/windows/spatial_split_10km
 find $GROUP_PATH -maxdepth 2 -name "metadata.json" -exec cat {} \; | grep -oE "train|val|test" | sort | uniq -c | awk 'BEGIN{printf "{"} {printf "%s\"%s\": %d", (NR>1?", ":""), $2, $1} END{print "}"}'
-python -m rslp.main olmoearth_run finetune --project_path /weka/dfive-default/yawenz/rslearn_projects/olmoearth_run_data/nandi/finetune --scratch_path /weka/dfive-default/yawenz/datasets/scratch_ft_v3
+python -m rslp.main olmoearth_run finetune --project_path /weka/dfive-default/hadriens/rslearn_projects/olmoearth_run_data/burn-scar_test --scratch_path /weka/dfive-default/rslearn-eai/datasets/burn-scar/oerun_raster/dataset
 ```
 
 ## 4. Inference: using your fine-tuned model

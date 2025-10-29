@@ -6,6 +6,7 @@ Here are relevant links for fine-tuning and applying the model per the documenta
 [the main README](../README.md):
 
 - Model checkpoint: https://huggingface.co/allenai/OlmoEarth-v1-FT-Mangrove-Base/resolve/main/model.ckpt
+- Annotation GeoJsons: https://huggingface.co/allenai/olmoearth_projects_mangrove/blob/main/annotation_features.geojson
 - rslearn dataset: https://huggingface.co/allenai/olmoearth_projects_mangrove/resolve/main/mangrove.tar
 
 ## Model Details

@@ -95,7 +95,7 @@ each feature:
 
 ```jsonc
 {
-  "type": "FeatureCollection"
+  "type": "FeatureCollection",
   "properties": {},
   "features": [
     {

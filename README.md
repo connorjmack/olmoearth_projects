@@ -8,7 +8,7 @@ OlmoEarth.
 The models available here are:
 
 - [Live Fuel Moisture Content Mapping](docs/lfmc.md)
-- [Forest Loss Driver Classification](docs/forest_loss_drivers.md)
+- [Forest Loss Driver Classification](docs/forest_loss_driver.md)
 - [Mangrove Mapping](docs/mangrove.md)
 - [Ecosystem Type Mapping](docs/ecosystem_type_mapping.md)
 

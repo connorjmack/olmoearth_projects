@@ -28,7 +28,7 @@ The model is trained on data provided by Global Mangrove Watch available at http
 Each sample in the dataset specifies a longitude, latitude, a start and end time (1 year apart), and a class label. For each sample we create a 12 month time series of Sentinel 2 data within the time bounds.
 
 We split the dataset into train, val, splits , where each 2 by 2 pixel
-grid cells are assigned via hash to train (85%), val (15%).
+grid cells are assigned via hash to train (87.5%), val (12.5%).
 
 ## Inference
 

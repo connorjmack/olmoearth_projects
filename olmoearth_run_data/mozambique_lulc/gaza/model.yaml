@@ -57,7 +57,7 @@ data:
       class_path: rslearn.train.tasks.multi_task.MultiTask
       init_args:
         tasks:
-          class:
+          segment:
             class_path: rslearn.train.tasks.segmentation.SegmentationTask
             init_args:
               num_classes: 8
@@ -192,9 +192,9 @@ data:
                         average: null
                     class_idx: 7
         input_mapping:
-          class:
+          segment:
             label: "targets"
-    batch_size: 32
+    batch_size: 2
     num_workers: ${NUM_WORKERS}
     default_config:
       transforms:
@@ -256,7 +256,7 @@ trainer:
       init_args:
         path: placeholder
         output_layer: ${PREDICTION_OUTPUT_LAYER}
-        selector: ["class"]
+        selector: ["segment"]
         merger:
           class_path: rslearn.train.prediction_writer.RasterMerger
           init_args:

@@ -39,11 +39,8 @@ model:
         encoder:
         - class_path: rslearn.models.olmoearth_pretrain.model.OlmoEarth
           init_args:
-            checkpoint_path: ${EXTRA_FILES_PATH}/yawenzzzz/latent_mim_cross_random_per_modality_patchdisc_add_contrastive_0.1_1/step400000
-            selector:
-            - encoder
-            forward_kwargs:
-              patch_size: 8
+            model_id: OLMOEARTH_V1_BASE
+            patch_size: 8
         decoders:
           class:
           - class_path: rslearn.models.unet.UNetDecoder
@@ -345,3 +342,4 @@ data:
             - B09
 # rslp_project: 2025_06_06_helios_finetuning
 # rslp_experiment: v2_satlas_solar_farm_128_ts_helios_per_mod_patchdisc_contrastive_fix
+# unused: ${EXTRA_FILES_PATH}

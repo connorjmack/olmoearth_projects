@@ -46,3 +46,42 @@ postprocessing_strategies:
 
   process_window:
     class_path: olmoearth_run.runner.tools.postprocessors.noop_raster.NoopRaster
+
+inference_results_config:
+  data_type: RASTER
+  classification_fields:
+    - property_name: segment
+      band_index: 1
+      allowed_values:
+        - value: 0
+          label: woodland_forest
+          color: [38, 115, 77]
+        - value: 1
+          label: open_water
+          color: [70, 130, 180]
+        - value: 2
+          label: shrubland_savanna
+          color: [143, 188, 143]
+        - value: 3
+          label: herbaceous_wetland
+          color: [46, 139, 87]
+        - value: 4
+          label: grassland_barren
+          color: [189, 183, 107]
+        - value: 5
+          label: agriculture_settlement
+          color: [102, 205, 170]
+        - value: 6
+          label: montane_forest
+          color: [34, 139, 34]
+        - value: 7
+          label: lava_forest
+          color: [255, 140, 0]
+        - value: 8
+          label: urban_dense_development
+          color: [178, 34, 34]
+        - value: 9
+          label: unknown
+          color: [192, 192, 192]
+  detection_objects: null
+  regression_fields: null

@@ -91,15 +91,14 @@ def test_olmoearth_run_solar_farm(
     with (src_dir / "model.yaml").open() as f:
         model_config = yaml.safe_load(f)
     model_config["data"]["init_args"]["batch_size"] = 1
+    yaml_string = yaml.dump(model_config)
+    # Add comment to contain the needed but unused EXTRA_FILES_PATH template var.
+    yaml_string += "\n# unused: ${EXTRA_FILES_PATH}\n"
     with (config_dir / "model.yaml").open("w") as f:
-        yaml.safe_dump(model_config, f)
+        f.write(yaml_string)
 
     # Disable W&B for this test.
     monkeypatch.setenv("WANDB_MODE", "disabled")
-    # Set custom extra files directory that contains the requisite Helios config.
-    monkeypatch.setenv(
-        "EXTRA_FILES_PATH", "gs://ai2-rslearn-projects-data/helios/checkpoints/"
-    )
 
     scratch_dir = tmp_path / "scratch"
     olmoearth_run(

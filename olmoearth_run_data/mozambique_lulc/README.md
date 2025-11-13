@@ -11,6 +11,26 @@ For LULC classification, the train/test splits are:
 - Manica: 1,917 / 822
 - Zambezia: 1,225 / 525
 
+### Generating the data
+```
+python /weka/dfive-default/gabrielt/olmoearth_projects/olmoearth_projects/projects/mozambique_lulc/create_windows_for_lulc.py --gpkg_dir /weka/dfive-default/yawenz/datasets/mozambique/train_test_samples --ds_path /weka/dfive-default/rslearn-eai/datasets/crop/mozambique_lulc/20251113 --window_size 32
+```
+You will then need to copy a `config.json` into the dataset path, `/weka/dfive-default/rslearn-eai/datasets/crop/mozambique_lulc/20251113`.
+
+The config being used is available in [config.json](config.json).
+
+Once the config is copied into the dataset root, the following commands can be run:
+
+```
+rslearn dataset prepare --root /weka/dfive-default/rslearn-eai/datasets/crop/mozambique_lulc/20251113 --workers 64 --no-use-initial-job --retry-max-attempts 8 --retry-backoff-seconds 60
+
+python -m rslp.main common launch_data_materialization_jobs --image favyen/rslp_image --ds_path /weka/dfive-default/rslearn-eai/datasets/crop/mozambique_lulc/20251113 --clusters+=ai2/neptune-cirrascale --num_jobs 5
+```
+
+Within `/weka/dfive-default/rslearn-eai/datasets/crop/mozambique_lulc` there are two versions of the data:
+- `/weka/dfive-default/rslearn-eai/datasets/crop/mozambique_lulc/20251023`, which only has the train and test split as defined in the gpkg files
+- `/weka/dfive-default/rslearn-eai/datasets/crop/mozambique_lulc/20251113`, which splits the training data into train and val data using a spatial split (introduced in [this commit](https://github.com/allenai/olmoearth_projects/pull/28/commits/1cfb86d40c8e2ccba830eb80410d1248544877c9)).
+
 ### Finetuning
 
 Currently, we use [rslearn_projects](github.com/allenai/rslearn_projects) for finetuning, using the [rslp_finetuning.yaml](rslp_finetuning.yaml). To run finetune for a specific province, update the yaml's `groups` (lines 238-250) from `"gaza"` to one of `["gaza", "manica", "zambezia"]`. With `rslean_projects` installed (and access to Beaker), finetuning can then be run with the following command:
@@ -18,3 +38,7 @@ Currently, we use [rslearn_projects](github.com/allenai/rslearn_projects) for fi
 ```
 python -m rslp.main olmoearth_pretrain launch_finetune --image_name gabrielt/rslpomp_20251027b --config_paths+=data/helios/v2_mozambique_lulc/finetune_s2_20251024.yml --cluster+=ai2/saturn --rslp_project <MY_RSLP_PROJECT_NAME> --experiment_id <MY_EXPERIMENT_ID>
 ```
+
+### Inference
+
+All inference is done on [OlmoEarth Studio](https://olmoearth.allenai.org/). Polygons around the provinces were manually drawn (within Studio).

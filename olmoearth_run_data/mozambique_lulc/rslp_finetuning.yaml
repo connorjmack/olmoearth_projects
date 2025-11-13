@@ -242,7 +242,7 @@ data:
       patch_size: 16
       groups: ["gaza"]
       tags:
-        split: "test"
+        split: "val"
     test_config:
       patch_size: 16
       groups: ["gaza"]

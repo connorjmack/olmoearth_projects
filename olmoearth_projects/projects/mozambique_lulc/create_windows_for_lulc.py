@@ -34,7 +34,7 @@ CLASS_MAP = {
 }
 
 # Per-province temporal coverage (UTC)
-PROVINCE_TIME = {
+GROUP_TIME = {
     "gaza": (
         datetime(2024, 10, 23, tzinfo=UTC),
         datetime(2025, 5, 7, tzinfo=UTC),
@@ -45,6 +45,13 @@ PROVINCE_TIME = {
     ),
     "zambezia": (
         datetime(2024, 11, 23, tzinfo=UTC),
+        datetime(2025, 6, 7, tzinfo=UTC),
+    ),
+    # for crop type, we will train a single model
+    # for all 3 provinces since there are too few labels
+    # so let's take the union of the ranges.
+    "crop_type": (
+        datetime(2024, 10, 23, tzinfo=UTC),
         datetime(2025, 6, 7, tzinfo=UTC),
     ),
 }
@@ -253,34 +260,40 @@ if __name__ == "__main__":
         default=32,
         help="Worker processes (set 1 for single-process)",
     )
+    parser.add_argument("--crop_type", action="store_true", default=False)
     args = parser.parse_args()
 
     gpkg_dir = Path(args.gpkg_dir)
     ds_path = UPath(args.ds_path)
-
-    expected = [
-        ("gaza", "train", gpkg_dir / "gaza_train.gpkg"),
-        ("gaza", "test", gpkg_dir / "gaza_test.gpkg"),
-        ("manica", "train", gpkg_dir / "manica_train.gpkg"),
-        ("manica", "test", gpkg_dir / "manica_test.gpkg"),
-        ("zambezia", "train", gpkg_dir / "zambezia_train.gpkg"),
-        ("zambezia", "test", gpkg_dir / "zambezia_test.gpkg"),
-    ]
+    if not args.crop_type:
+        expected = [
+            ("gaza", "train", gpkg_dir / "gaza_train.gpkg"),
+            ("gaza", "test", gpkg_dir / "gaza_test.gpkg"),
+            ("manica", "train", gpkg_dir / "manica_train.gpkg"),
+            ("manica", "test", gpkg_dir / "manica_test.gpkg"),
+            ("zambezia", "train", gpkg_dir / "zambezia_train.gpkg"),
+            ("zambezia", "test", gpkg_dir / "zambezia_test.gpkg"),
+        ]
+    else:
+        expected = [
+            ("crop_type", "train", gpkg_dir / "train_gaza_zambezia_manica.gpkg"),
+            ("crop_type", "test", gpkg_dir / "test_gaza_zambezia_manica.gpkg"),
+        ]
 
     # Basic checks
-    for province, _, path in expected:
-        if province not in PROVINCE_TIME:
-            raise ValueError(f"Unknown province '{province}'")
+    for group_or_province, _, path in expected:
+        if group_or_province not in GROUP_TIME:
+            raise ValueError(f"Unknown province or group '{group_or_province}'")
         if not path.exists():
             raise FileNotFoundError(f"Missing expected file: {path}")
 
     # Run per file
-    for province, split, path in expected:
-        start_time, end_time = PROVINCE_TIME[province]
+    for group_or_province, split, path in expected:
+        start_time, end_time = GROUP_TIME[group_or_province]
         create_windows_from_gpkg(
             gpkg_path=UPath(path),
             ds_path=ds_path,
-            group_name=province,  # group == province
+            group_name=group_or_province,  # group == province
             split=split,  # honor provided split
             window_size=args.window_size,
             max_workers=args.max_workers,

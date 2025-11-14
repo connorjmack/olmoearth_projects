@@ -98,6 +98,15 @@ data:
                         num_classes: 8
                         average: null
                     class_idx: 1
+                water_f1:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.F1Score
+                      init_args:
+                        num_classes: 8
+                        task: "multiclass"
+                    class_idx: 1
                 bareground_precision:
                   class_path: rslearn.train.tasks.segmentation.SegmentationMetric
                   init_args:
@@ -116,6 +125,15 @@ data:
                         num_classes: 8
                         average: null
                     class_idx: 2
+                bareground_f1:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.F1Score
+                      init_args:
+                        num_classes: 8
+                        task: "multiclass"
+                    class_idx: 2
                 rangeland_precision:
                   class_path: rslearn.train.tasks.segmentation.SegmentationMetric
                   init_args:
@@ -133,6 +151,15 @@ data:
                       init_args:
                         num_classes: 8
                         average: null
+                    class_idx: 3
+                rangeland_f1:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.F1Score
+                      init_args:
+                        num_classes: 8
+                        task: "multiclass"
                     class_idx: 3
                 floodedvegetation_precision:
                   class_path: rslearn.train.tasks.segmentation.SegmentationMetric
@@ -264,6 +291,6 @@ trainer:
       init_args:
         module_selector: ["model", "encoder", 0]
         unfreeze_at_epoch: 20
-        unfreeze_lr_factor: 10
+        unfreeze_lr_factor: 100
 rslp_project: 2025_09_18_mozambique_lulc
 rslp_experiment: mozambique_lulc_helios_base_S2_ts_ws16_ps1_gaza

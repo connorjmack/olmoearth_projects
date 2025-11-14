@@ -276,7 +276,7 @@ if __name__ == "__main__":
         ]
     else:
         expected = [
-            ("crop_type", "train", gpkg_dir / "train_gaza_zambezia_manica.gpkg"),
+            ("crop_type", "train", gpkg_dir / "training_gaza_zambezia_manica.gpkg"),
             ("crop_type", "test", gpkg_dir / "test_gaza_zambezia_manica.gpkg"),
         ]
 

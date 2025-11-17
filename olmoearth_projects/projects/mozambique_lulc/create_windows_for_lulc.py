@@ -33,6 +33,19 @@ CLASS_MAP = {
     6: "Buildings",
 }
 
+# reversed; in the crop type gpkg
+# the strings are saved and we want to
+# get the ints back for the category id
+CROP_TYPE_MAP = {
+    "corn": 0,
+    "cassava": 1,
+    "rice": 2,
+    "sesame": 3,
+    "beans": 4,
+    "millet": 5,
+    "sorghum": 6,
+}
+
 
 # Per-province temporal coverage (UTC)
 GROUP_TIME = {
@@ -141,7 +154,10 @@ def create_window(
     """Create a single window and write label layer."""
     fid, latitude, longitude, category_id = rec
     if crop_type:
+        if not isinstance(category_id, str):
+            raise ValueError(f"{category_id} should be str in the crop-type case.")
         category_label = category_id
+        category_id = CROP_TYPE_MAP[category_label]
     else:
         if not isinstance(category_id, int):
             raise ValueError(f"{category_id} should be int in the non crop-type case.")

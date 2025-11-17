@@ -30,6 +30,11 @@ if __name__ == "__main__":
     # remove the ".model"
     new_sd: dict[str, Any] = {}
     for key, val in state_dict.items():
-        new_sd[key.replace("model.", "").replace("encoder.0", "encoder")] = val
+        if "encoder" in key:
+            new_sd[
+                key.replace("model.", "")
+                .replace("encoder.0", "encoder")
+                .replace("encoder.", "")
+            ] = val
 
     torch.save(new_sd, f"{args.save_path}/weights.pth")

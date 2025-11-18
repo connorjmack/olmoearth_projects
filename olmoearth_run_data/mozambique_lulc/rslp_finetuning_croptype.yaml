@@ -41,7 +41,8 @@ model:
         trunk: null
     restore_config:
       restore_path: /weka/dfive-default/rslearn-eai/projects/2025_09_18_mozambique_lulc/combined_with_val_20251115_new_data/checkpoints/epoch=24-step=26975.ckpt
-      remap_prefixes: []
+      remap_prefixes:
+        - ["model.", ""]
       ignore_prefixes: ["model.decoders"]
       selector: ["state_dict"]
     lr: 0.0001

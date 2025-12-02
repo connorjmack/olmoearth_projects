@@ -1,20 +1,4 @@
-"""Create label_raster from label.
-
-If you run this, you will need to update the config.json for the dataset
-to include the following entry:
-
-"label_raster": {
-      "band_sets": [
-        {
-          "bands": [
-            "label"
-          ],
-          "dtype": "int32"
-        }
-      ],
-      "type": "raster"
-    },
-"""
+"""Update splits for dataset."""
 
 import argparse
 import multiprocessing
@@ -30,29 +14,6 @@ from rslearn.dataset.dataset import Dataset
 from rslearn.dataset.window import Window
 from rslearn.utils.mp import star_imap_unordered
 from upath import UPath
-
-LULC_CLASS_NAMES = [
-    "invalid",
-    "Water",
-    "Bare Ground",
-    "Rangeland",
-    "Flooded Vegetation",
-    "Trees",
-    "Cropland",
-    "Buildings",
-]
-CROPTYPE_CLASS_NAMES = [
-    "invalid",
-    "corn",
-    "cassava",
-    "rice",
-    "sesame",
-    "beans",
-    "millet",
-    "sorghum",
-]
-PROPERTY_NAME = "category"
-BAND_NAME = "label"
 
 
 def update_train_val_split(window: Window, splitter: DataSplitterInterface) -> None:
@@ -89,7 +50,7 @@ if __name__ == "__main__":
     # )
     jobs = [dict(splitter=splitter, window=w) for w in windows]
     p = multiprocessing.Pool(args.workers)
-    outputs = star_imap_unordered(p, update_train_val_split, windows)
-    for _ in tqdm.tqdm(outputs, total=len(windows)):
+    outputs = star_imap_unordered(p, update_train_val_split, jobs)
+    for _ in tqdm.tqdm(outputs, total=len(jobs)):
         pass
     p.close()

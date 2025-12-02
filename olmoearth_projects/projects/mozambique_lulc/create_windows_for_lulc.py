@@ -57,22 +57,22 @@ CROP_TYPE_MAP = {
 GROUP_TIME = {
     "gaza": (
         datetime(2024, 10, 23, tzinfo=UTC),
-        datetime(2025, 6, 7, tzinfo=UTC),
+        datetime(2025, 6, 20, tzinfo=UTC),
     ),
     "manica": (
         datetime(2024, 10, 23, tzinfo=UTC),
-        datetime(2025, 6, 7, tzinfo=UTC),
+        datetime(2025, 6, 20, tzinfo=UTC),
     ),
     "zambezia": (
         datetime(2024, 10, 23, tzinfo=UTC),
-        datetime(2025, 6, 7, tzinfo=UTC),
+        datetime(2025, 6, 20, tzinfo=UTC),
     ),
     # for crop type, we will train a single model
     # for all 3 provinces since there are too few labels
     # so let's take the union of the ranges.
     "crop_type": (
         datetime(2024, 10, 23, tzinfo=UTC),
-        datetime(2025, 6, 7, tzinfo=UTC),
+        datetime(2025, 6, 20, tzinfo=UTC),
     ),
 }
 

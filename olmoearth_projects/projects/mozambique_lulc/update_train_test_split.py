@@ -49,7 +49,7 @@ if __name__ == "__main__":
     #     train_prop=0.8, val_prop=0.2, test_prop=0.0, grid_size=32
     # )
     if args.workers <= 1:
-        for window in tqdm(windows):
+        for window in tqdm.tqdm(windows):
             update_train_val_split(window, splitter)
     else:
         jobs = [dict(splitter=splitter, window=w) for w in windows]

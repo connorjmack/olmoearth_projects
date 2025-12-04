@@ -32,7 +32,8 @@ def spatial_clustering(df: gpd.GeoDataFrame, k: int = 5) -> float:
 
     Given a dataset of labels with two columns (`label` and `geometry`),
     we run KNN using the geometry centroids as features. Highly clustered
-    datasets will score highly.
+    datasets will score highly (or low, if its a regression problem and
+    we are measuring MSE).
 
     We assume the geometries are in WGS84 (latitude, longitude)
     """

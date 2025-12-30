@@ -1,0 +1,22 @@
+{
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [-113.0, 32.5],
+        [-113.0, 34.0],
+        [-111.0, 34.0],
+        [-111.0, 32.5],
+        [-113.0, 32.5]
+      ]]
+    },
+    "properties": {
+      "oe_start_time": "2024-06-01T00:00:00Z",
+      "oe_end_time": "2024-09-01T00:00:00Z",
+      "region": "Phoenix_AZ_Test",
+      "description": "Phoenix metro area test region for solar farm detection"
+    }
+  }]
+}

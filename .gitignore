@@ -5,3 +5,48 @@ build
 olmoearth_projects.egg-info
 rslearn.egg-info
 project_data
+
+# Scratch/temporary data directories
+scratch/
+*/scratch/
+temp/
+tmp/
+
+# Large geospatial data files
+*.tif
+*.tiff
+*.geotiff
+*.hdf
+*.hdf5
+*.h5
+*.nc
+*.zarr
+
+# Model checkpoints and weights
+*.ckpt
+*.pth
+*.pt
+*.safetensors
+*.pb
+*.h5
+checkpoints/
+weights/
+
+# Large compressed files
+*.tar.gz
+*.zip
+*.7z
+*.rar
+
+# Datasets and large data
+data/
+datasets/
+*.csv
+*.parquet
+*.feather
+*.arrow
+
+# Logs and outputs
+logs/
+outputs/
+*.log

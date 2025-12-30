@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(chmod:*)",
+      "Bash(bash:*)",
+      "Bash(uv:*)",
+      "Bash(curl:*)",
+      "Bash(sh)",
+      "Bash(export PATH=\"$HOME/.local/bin:$PATH\")",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(source:*)",
+      "Bash(find:*)",
+      "Bash(timeout 60 python:*)",
+      "Bash(tee:*)",
+      "Bash(env)",
+      "Bash(done)",
+      "Bash(xargs -I {} sh -c 'echo \"\"=== {} ===\"\" && cat {}')",
+      "Bash(.venv/bin/python:*)",
+      "Bash(.venv/bin/python3:*)",
+      "Bash(git rm:*)",
+      "Bash(git diff-tree:*)",
+      "Bash(while read size path)",
+      "Bash(do du -h \"$path\")",
+      "Bash(git ls-tree:*)",
+      "Bash(git reset:*)"
+    ]
+  }
+}

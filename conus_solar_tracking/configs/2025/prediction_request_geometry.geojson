@@ -1,0 +1,42 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -125.0,
+              24.0
+            ],
+            [
+              -125.0,
+              49.5
+            ],
+            [
+              -66.0,
+              49.5
+            ],
+            [
+              -66.0,
+              24.0
+            ],
+            [
+              -125.0,
+              24.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "oe_start_time": "2025-06-01T00:00:00Z",
+        "oe_end_time": "2025-09-01T00:00:00Z",
+        "year": 2025,
+        "region": "CONUS",
+        "description": "Continental US solar farm detection for 2025"
+      }
+    }
+  ]
+}
